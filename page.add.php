@@ -76,12 +76,12 @@ get_header();
 				<form action="" method="post" class="form-add-site" enctype="multipart/form-data">
 					<p>
 						<label>Nom du site</label>
-						<input type="text" name="post_title" value="<?php echo stripslashes($_POST['post_title']); ?>" />
+						<input type="text" name="post_title" value="<?php echo esc_attr(stripslashes($_POST['post_title'])); ?>" />
 					</p>
 					
 					<p>
 						<label>Adresse du site <small>(avec le http://)</small></label>
-						<input type="text" name="url" value="<?php echo stripslashes($_POST['url']); ?>" />
+						<input type="text" name="url" value="<?php echo esc_attr(stripslashes($_POST['url'])); ?>" />
 					</p>
 					
 					<p>
@@ -99,17 +99,17 @@ get_header();
 					
 					<p>
 						<label>Mots clefs <small>(séparé avec une virgule)</small></label>
-						<input type="text" name="tags_input" value="<?php echo stripslashes($_POST['tags_input']); ?>" />
+						<input type="text" name="tags_input" value="<?php echo esc_attr(stripslashes($_POST['tags_input'])); ?>" />
 					</p>
 					
 					<p>
 						<label>Description du site</label>
-						<textarea class="mceEditor" name="post_content"><?php echo stripslashes($_POST['post_content']); ?></textarea>
+						<textarea class="mceEditor" name="post_content"><?php echo esc_attr(stripslashes($_POST['post_content'])); ?></textarea>
 					</p>
 					
 					<p>
 						<label>Motivations pour ajouter le site au showcase</label>
-						<textarea name="motivation" rows="3"><?php echo stripslashes($_POST['motivation']); ?></textarea>
+						<textarea name="motivation" rows="3"><?php echo esc_attr(stripslashes($_POST['motivation'])); ?></textarea>
 					</p>
 					
 					<p>
@@ -119,15 +119,15 @@ get_header();
 					
 					<p>
 						<label>Votre nom complet</label>
-						<input type="text" name="name" value="<?php echo stripslashes($_POST['name']); ?>" />
+						<input type="text" name="name" value="<?php echo esc_attr(stripslashes($_POST['name'])); ?>" />
 					</p>
 					
 					<p>
 						<label>Votre adresse courriel</label>
-						<input type="text" name="email" value="<?php echo stripslashes($_POST['email']); ?>" />
+						<input type="text" name="email" value="<?php echo esc_attr(stripslashes($_POST['email'])); ?>" />
 					</p>
 					
-					<?php echo recaptcha_get_html('6LeIfwsAAAAAAMK08OiQ5YXHjmHhVxG90s7NrAec'); ?>
+					<?php echo recaptcha_get_html(RECAPTCHA_PUB_KEY); ?>
 					<br />
 					
 					<p class="submit">

@@ -91,16 +91,16 @@ elseif ( (isset($wp_query->query_vars['post_type']) && $wp_query->query_vars['po
 					<form method="post" id="loginform" class="user_box" action="http://www.wordpress-fr.net/wp-login.php">
 						<div>
 							<label for="login">Connexion</label>
-							<input size="10" type="text" value="<?php echo (empty($user_login)) ? wp_specialchars(stripslashes($user_login), 1) : 'pseudo'; ?>" name="log" id="login" />
+							<input size="10" type="text" value="<?php echo (empty($user_login)) ? esc_attr(stripslashes($user_login)) : 'pseudo'; ?>" name="log" id="login" />
 							<input size="10" type="password" value="motdepasse" name="pwd" id="password" />
-							<input class="hidden" type="hidden" name="redirect_to" value="<?php echo $_SERVER['REQUEST_URI']; ?>" />
+							<input class="hidden" type="hidden" name="redirect_to" value="<?php echo esc_attr($_SERVER['REQUEST_URI']); ?>" />
 							<input class="hidden" type="hidden" name="rememberme" value="forever" />
 							<input type="submit" id="loginsubmit" value="OK" />						
 						</div>
 					</form>			
 				<?php else : // Connecte ?>
 					<div id="user_connected">
-						Bienvenue <?php echo wp_specialchars(stripslashes($user_identity), 1); ?>.
+						Bienvenue <?php echo esc_html(stripslashes($user_identity), 1); ?>.
 						<a href="<?php echo get_option('siteurl'); ?>/wp-login.php?action=logout&amp;redirect_to=<?php echo urlencode($_SERVER['REQUEST_URI']); ?>" title="Deconnexion" class="logout">Me déconnecter</a>
 					</div>
 				<?php endif; ?>
@@ -170,7 +170,7 @@ elseif ( (isset($wp_query->query_vars['post_type']) && $wp_query->query_vars['po
 			</div>
 			
 			<div id="searchform">
-				<form method="get" action="<?php bloginfo('url'); ?>/">
+				<form method="get" action="<?php echo home_url('/'); ?>">
 					<div>
 						<input type="text" value="<?php the_search_query(); ?>" name="s" id="s" />
 						<input type="submit" id="searchsubmit" value="" />
