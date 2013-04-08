@@ -50,7 +50,7 @@
 		
 		<?php 
 		$response = wp_remote_get('http://www.wordpress-fr.net/support/extern.php?action=new&show=6&type=custom');
-		if ( $response != false && !is_wp_error($response) && wp_remote_retrieve_response_code() == 200 ) {
+		if ( $response != false && !is_wp_error($response) && wp_remote_retrieve_response_code($response) == 200 ) {
 			echo wp_remote_retrieve_body($response);
 		}
 		?>
