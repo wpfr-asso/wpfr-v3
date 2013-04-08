@@ -13,10 +13,6 @@ Use this when communicating between your server and our server. Because this key
 if ( ! isset( $content_width ) )
 	$content_width = 555;
 
-include( TEMPLATEPATH . '/inc/faq.php' );
-include( TEMPLATEPATH . '/inc/publication.php' );
-include( TEMPLATEPATH . '/inc/vitrine.php' );
-
 // Add WP thumbs
 add_theme_support( 'post-thumbnails' );
 set_post_thumbnail_size( 48, 48, true );  // Normal thumbs
@@ -30,14 +26,8 @@ add_image_size( 'single-thumbnail' , 362, 400, true );
 add_image_size( 'listing-publi-thumbnail', 120, 160, true );
 
 // Load inc theme
-if( is_dir( TEMPLATEPATH.'/inc' ) ) {
-	if( $dh = opendir( TEMPLATEPATH.'/inc' ) ) {
-		while( ( $inc_file = readdir( $dh ) ) !== false ) {
-			if( substr( $inc_file, -4 ) == '.php' ) {
-				include_once( TEMPLATEPATH.'/inc/' . $inc_file );
-			}
-		}
-	}
+foreach( array('author', 'faq', 'image', 'publication', 'vimeo', 'vitrine') as $inc_file ) {
+	include_once( TEMPLATEPATH.'/inc/' . $inc_file . '.php' );
 }
 
 // Remove fake CSS
@@ -139,49 +129,3 @@ function detailResultSearch() {
 		echo '<strong>'.$found_posts.'</strong> résultats';
 	}
 }
-
-function getUrlData( $host = '', $path = '' ) {
-	// Clean Path
-	$path = str_replace('&amp;', '&', $path);
-
-	$data = '';
-	if ( function_exists('curl_init') ) { // Curl exist ?
-		
-		// Création d'une nouvelle ressource cURL
-		$ch = curl_init();
-
-		// Configuration de l'URL et d'autres options
-		curl_setopt($ch, CURLOPT_URL, "http://{$host}{$path}");
-		curl_setopt($ch, CURLOPT_HEADER, 0);
-
-		// Récupération de l'URL et affichage sur le naviguateur
-		curl_exec($ch);
-
-		// Fermeture de la session cURL
-		curl_close($ch);	
-
-	} else { // Fsocket
-	
-		$http_request  = "GET $path HTTP/1.0\r\n";
-		$http_request .= "Host: $host\r\n";
-		$http_request .= "Content-Type: application/x-www-form-urlencoded; charset=UTF-8\r\n";
-		$http_request .= "Content-Length: " . strlen($request) . "\r\n";
-		$http_request .= "\r\n";
-		$http_request .= $request;
-
-		if( false != ( $fs = @fsockopen( $host, 80, $errno, $errstr, 3) ) && is_resource($fs) ) {
-			fwrite($fs, $http_request);
-
-			while ( !feof($fs) )
-				$data .= fgets($fs, 1160); // One TCP-IP packet
-			fclose($fs);
-			$data = explode("\r\n\r\n", $data, 2);
-		}
-
-		$data = $data[1];		
-	}
-
-	return $data;
-}
-	
-?>
