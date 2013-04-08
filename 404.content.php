@@ -7,7 +7,7 @@
 		<p>Vous avez maintenant les possibilités suivantes :</p>
 		<ul>
 			<li>Faire une recherche à l&#8217;aide du moteur de recherche ci-dessous</li>
-			<li>Revenir à la <a href="<?php bloginfo('home'); ?>" title="Cliquez ici pour revenir à la page d'accueil">page d&#8217;accueil</a></li>	
+			<li>Revenir à la <a href="<?php echo home_url('/'); ?>" title="Cliquez ici pour revenir à la page d'accueil">page d&#8217;accueil</a></li>	
 		</ul>
 
 		<?php include (TEMPLATEPATH . '/searchform.php'); ?>
