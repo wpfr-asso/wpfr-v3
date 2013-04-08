@@ -115,6 +115,9 @@ function my_breadcrumbs() {
 add_action( 'init', 'checkShowcaseForm' );
 function checkShowcaseForm() {
 	if ( isset($_POST['add-new-site']) ) {
+    if ( !wp_verify_nonce($_POST['nonce-vitrine'],'add-new-site') ) {
+      wp_die('Erreur de sécurité.');
+    }
 		
 		require_once( dirname(__FILE__) . '/../recaptcha-php-1.10/recaptchalib.php');
 		$resp = recaptcha_check_answer (RECAPTCHA_PRI_KEY, $_SERVER["REMOTE_ADDR"], $_POST["recaptcha_challenge_field"], $_POST["recaptcha_response_field"]);
@@ -129,7 +132,7 @@ function checkShowcaseForm() {
 		
 		$datas = array(
 			'post_title' 	=> stripslashes($_POST['post_title']),
-			'post_content' 	=> stripslashes($_POST['post_content']),
+			'post_content' 	=> wp_kses_post(stripslashes($_POST['post_content'])),
 			'post_type' 	=> 'vitrine',
 			'post_status' 	=> 'pending',
 			'post_author' 	=> 1,
@@ -139,7 +142,7 @@ function checkShowcaseForm() {
 		$p_id = wp_insert_post( $datas );
 		if ( $p_id != false ) {
 			update_post_meta( $p_id, 'motivation', 		stripslashes($_POST['motivation']) );
-			update_post_meta( $p_id, 'url', 			stripslashes($_POST['url']) );
+			update_post_meta( $p_id, 'url', 			esc_url($_POST['url']) );
 			update_post_meta( $p_id, 'name',			stripslashes($_POST['name']) );
 			update_post_meta( $p_id, 'email', 			stripslashes($_POST['email']) );
 			update_post_meta( $p_id, 'type-de-site', 	stripslashes($_POST['type-de-site']) );

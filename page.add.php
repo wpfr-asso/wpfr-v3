@@ -131,6 +131,7 @@ get_header();
 					<br />
 					
 					<p class="submit">
+						<?php wp_nonce_field('add-new-site','nonce-vitrine'); ?>
 						<input type="submit" name="add-new-site" value="Soumettre à validation" />
 					</p>
 				</form>
