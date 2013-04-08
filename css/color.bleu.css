@@ -1,0 +1,51 @@
+/* Menu */
+#aera_wp { display:none; }
+#aera_com { display:block; }
+
+/* Color */
+a:link, a:visited,
+.blog h2,
+.single_postmetadata h4,
+.entry h1,
+.entry h2, 
+.entry h3, 
+.entry h4, 
+.entry h5, 
+.entry h6,
+.post h1,
+.post h2, 
+.post h3, 
+.post h4, 
+.post h5, 
+.post h6,
+.post h1 a,
+.post h2 a, 
+.post h3 a, 
+.post h4 a, 
+.post h5 a, 
+.post h6 a,
+.sidebar h2,
+.sidebar ul ul li,
+.two_col h4,
+.comments_template h3,
+.comments_template h3 a,
+.planet h2,
+.planet h2 a
+{
+color:#274655;
+}
+
+/* Color Hover */
+a:hover {color: #0F1C22;}
+
+/* Background */
+a#write_comment,
+#commentform input#submit {
+background:#274655;
+}
+
+/* No li bull */
+.sidebar ul ul li, .sidebar ul ol li {
+background: none;
+padding-left: 0;
+}

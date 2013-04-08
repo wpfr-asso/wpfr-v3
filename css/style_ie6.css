@@ -1,0 +1,26 @@
+.home #featured {
+width: 470px;
+padding-left: 175px;
+margin-left: 20px;
+background-image:none;
+filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled='true', sizingMethod='crop', src='http://www.wordpress-fr.net/wp-content/themes/wordpress-fr-v3/images/home/home_icon_wp.png');
+}
+.home #featured a#home_big_dl {
+background-image:none;
+filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled='true', sizingMethod='crop', src='http://www.wordpress-fr.net/wp-content/themes/wordpress-fr-v3/images/logo_home31.png');
+}
+.global_twocol {
+width: 345px;
+}
+.two_col {
+width: 345px;
+}
+#sidebar1 {
+margin-left: 10px;
+}
+.sidebar {
+margin: 0 0 10px 5px;
+}
+#searchform {
+background: url(../images/search.gif) no-repeat;
+}
