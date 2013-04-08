@@ -8,4 +8,3 @@ function publication_pre_get_posts( $query ) {
 		$query->query_vars['orderby'] = 'rand';
 	}
 }
-?>

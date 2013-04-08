@@ -65,4 +65,3 @@ function db_create_vimeo() {
 		unset($sql);
 	}
 }
-?>
