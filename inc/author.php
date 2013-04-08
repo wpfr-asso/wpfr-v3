@@ -17,7 +17,7 @@ Class Author {
 			$this->author = get_userdata($author);
 		} elseif ( !empty($author_name) ) {
 			// We do a direct query here because we don't cache by nicename.
-			$id_author = $wpdb->get_var("SELECT ID FROM $wpdb->users WHERE user_nicename = '$author_name'");
+			$id_author = $wpdb->get_var($wpdb->prepare("SELECT ID FROM $wpdb->users WHERE user_nicename = %s", $author_name));
 			$this->author = get_userdata($id_author);
 		}
 	}
@@ -56,7 +56,7 @@ Class Author {
 	function count( $object ) {
 		global $wpdb;
 
-		$user_id = $this->author->ID;
+		$user_id = (int) $this->author->ID;
 		if ( $object == 'post' ) {
 			return (int) $wpdb->get_var("SELECT COUNT(post_title) FROM $wpdb->posts WHERE post_type = 'post' AND post_author = $user_id GROUP BY post_author");
 		} elseif ( $object == 'comment' ) {
@@ -65,4 +65,3 @@ Class Author {
 		return 0;
 	}
 }
-?>
