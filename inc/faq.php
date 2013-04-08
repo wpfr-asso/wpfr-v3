@@ -7,4 +7,3 @@ function faq_pre_get_posts( $query ) {
 		$query->query_vars['posts_per_page'] = 6;
 	}
 }
-?>
